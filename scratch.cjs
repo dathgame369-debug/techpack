@@ -1,0 +1,10 @@
+const fs = require('fs');
+let content = fs.readFileSync('src/components/Canvas/GarmentSilhouettes.ts', 'utf8');
+content = content.replace(/fill="#1a2236"/g, 'fill="#ffffff"');
+content = content.replace(/fill="#111621"/g, 'fill="#ffffff"');
+content = content.replace(/fill="#0d1017"/g, 'fill="#ffffff"');
+content = content.replace(/stroke="#c9a84c"/g, 'stroke="#000000"');
+content = content.replace(/stroke="#5a6380"/g, 'stroke="#666666"');
+content = content.replace(/fill="#c9a84c"/g, 'fill="#000000"');
+fs.writeFileSync('src/components/Canvas/GarmentSilhouettes.ts', content);
+console.log('Done');
