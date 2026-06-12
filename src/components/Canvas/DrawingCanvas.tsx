@@ -75,7 +75,9 @@ export const DrawingCanvas: React.FC = () => {
   const getPos = (_e: Konva.KonvaEventObject<MouseEvent | TouchEvent>): DrawPoint => {
     const stage = stageRef.current!;
     const pos = stage.getPointerPosition()!;
-    return { x: pos.x, y: pos.y };
+    const scaleX = stage.scaleX();
+    const scaleY = stage.scaleY();
+    return { x: pos.x / scaleX, y: pos.y / scaleY };
   };
 
   const handleMouseDown = useCallback((e: Konva.KonvaEventObject<MouseEvent>) => {
@@ -156,7 +158,8 @@ export const DrawingCanvas: React.FC = () => {
     setCurrentPt(null);
   }, [drawing, startPt, currentPt, activeTool, addAnnotation, tp]);
 
-  const scale = Math.min(containerSize.w / CANVAS_W, containerSize.h / CANVAS_H, 1);
+  const baseScale = Math.min(containerSize.w / CANVAS_W, containerSize.h / CANVAS_H, 1);
+  const scale = baseScale * (tp?.canvas.zoom ?? 1);
   const scaledW = CANVAS_W * scale;
   const scaledH = CANVAS_H * scale;
 
