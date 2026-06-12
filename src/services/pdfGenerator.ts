@@ -55,7 +55,6 @@ export async function generateTechpackPDF(
   const COL_3 = 50; // Body fabric / Wash
   const COL_4 = 45; // Trims
   const COL_5 = 45; // Stitches
-  const COL_6 = PW - 2 * M - (COL_1 + COL_2 + COL_3 + COL_4 + COL_5); // Fastening / etc
 
   let cx = M;
   
